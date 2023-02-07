@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 
 public class SelectionController : MonoBehaviour
 {
-    enum colour
+    enum EMaterial
     // indicates chosen material
     {
         Black,      // 1
@@ -25,7 +28,7 @@ public class SelectionController : MonoBehaviour
     //[SerializeField] private GameObject gameControllerGO;
     //[SerializeField] private GameObject carGO;
 
-    private int _model;
+    private EMaterial _colour;
     private int _carIndex;
 
     // Start is called before the first frame update
@@ -83,10 +86,14 @@ public class SelectionController : MonoBehaviour
             //}
             ChangeMaterial();
         }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            DisplayMaterials();
+        }
 
     }
 
-
+    // --- MODELS --- //
     private void ChangeModel(bool forward = true)
     {
         int prevIndex = _carIndex;
@@ -131,17 +138,60 @@ public class SelectionController : MonoBehaviour
         car.SetActive(false);
     }
 
+
+    // --- MATERIALS --- //
+    private void DisplayMaterials()
+    {
+        string[] materials = EMaterial.GetNames(typeof(EMaterial));
+
+        Debug.Log("numOfMaterials = " + EMaterial.GetNames(typeof(EMaterial)).Length);
+
+        for(int i = 0; i < materials.Length; i++)
+        {
+            Debug.Log(materials[i] + " - " + i);
+        }
+    }
     private void ChangeMaterial(bool forward = true)
     {
-        //colour.GetNames().Length;
+        int matLength = EMaterial.GetNames(typeof(EMaterial)).Length;
+        EMaterial oldColour = _colour;
 
-        if(forward)
+        if (forward)
         {
-            Debug.Log("forward");
+            // if there's space increment
+            if ((int)_colour != matLength - 1)
+            {
+                _colour++;
+                Debug.Log("forward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+            }
+            // otherwise loop around
+            else
+            {
+                //Debug.Log("forward: out of range");
+                Debug.Log("forward: looping");
+
+                _colour = Enum.GetValues(typeof(EMaterial)).Cast<EMaterial>().Min();
+                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+            }
         }
         else
         {
-            Debug.Log("backward");
+            // if there's space decrement
+            if ((int)_colour != 0)
+            {
+                _colour--;
+                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+            }
+            // otherwise loop around
+            else
+            {
+                Debug.Log("backward: looping");
+             
+                _colour = Enum.GetValues(typeof(EMaterial)).Cast<EMaterial>().Max();
+                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+
+                //Debug.Log("backward: out of range");
+            }
         }
     }
 }
