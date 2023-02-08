@@ -3,103 +3,70 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.Jobs;
 
 public class SelectionController : MonoBehaviour
 {
-    enum EMaterial
-    // indicates chosen material
-    {
-        Black,      // 1
-        Blue,       // 2
-        Dark_Blue,  // 3
-        Brown,      // 4
-        Gray,       // 5
-        Green,      // 6
-        Orange,     // 7
-        Pink,       // 8
-        Red,        // 9
-        Turquoise,  // 10
-        Violet,     // 11
-        White,      // 12
-        Yellow      // 13
-    }
-
-    //[SerializeField] private GameObject gameControllerGO;
-    //[SerializeField] private GameObject carGO;
-
-    private EMaterial _colour;
-    private int _carIndex;
+    [SerializeField] private int _carIndex, _colourIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start()");
+        Debug.Log("SelectionController.Start()");
+
+        // set starting car to active
+        ObjectPool.sharedInstance.GetCar(_carIndex).SetActive(true);
+
+        // paint on starting colour
+        UpdateCarColour();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // get A car object and set it to active
-        //GameObject car = ObjectPool.sharedInstance.GetPooledObject();
-        //if (car != null)
-        //{
-        //    car.SetActive(true);
-        //}
-
+        // Change Model
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Q key press");
+            Debug.Log("Q key pressed");
 
             ChangeModel(false);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E key press");
+            Debug.Log("E key pressed");
 
-            ChangeModel();            
+            ChangeModel();
         }
 
+        // Change Colour
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("A key press");
+            Debug.Log("A key pressed");
 
-
-            // get SPECIFIC car object and set it to active
-            //GameObject car = ObjectPool.sharedInstance.GetPooledObject(2);
-            //if (car != null)
-            //{
-            //    car.SetActive(true);
-            //}
-            ChangeMaterial(false);
+            ChangeColour(false);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("D key press");
+            Debug.Log("D key pressed");
 
-
-            // get SPECIFIC car object and set it to inactive
-            //GameObject car = ObjectPool.sharedInstance.GetPooledObject(2);
-            //if (car != null)
-            //{
-            //    car.SetActive(false);
-            //}
-            ChangeMaterial();
+            ChangeColour();
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+
+        // List Colours
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            DisplayMaterials();
+            LogColours();
         }
 
     }
 
     // --- MODELS --- //
-    private void ChangeModel(bool forward = true)
+    private void ChangeModel(bool next = true)
     {
         int prevIndex = _carIndex;
 
-        // move up the car index
-        if (forward)
+        // select next model
+        if (next)
         {
             if (_carIndex < transform.childCount - 1)
             {
@@ -113,7 +80,7 @@ public class SelectionController : MonoBehaviour
                 _carIndex = 0;
             }
         }
-        // move down the car index
+        // select previous model
         else
         {
             if (_carIndex > 0)
@@ -129,69 +96,95 @@ public class SelectionController : MonoBehaviour
             }
         }
 
+        // make sure it's the right colour
+        UpdateCarColour();
+
         // activate current car
-        GameObject car = ObjectPool.sharedInstance.GetPooledObject(_carIndex);
-        car.SetActive(true);
+        GameObject carGO = ObjectPool.sharedInstance.GetCar(_carIndex);
+        carGO.SetActive(true);
 
         // deactivate previous car
-        car = ObjectPool.sharedInstance.GetPooledObject(prevIndex);
-        car.SetActive(false);
+        carGO = ObjectPool.sharedInstance.GetCar(prevIndex);
+        carGO.SetActive(false);
     }
 
 
-    // --- MATERIALS --- //
-    private void DisplayMaterials()
+    // --- COLOURS --- //
+    private void LogColours()
     {
-        string[] materials = EMaterial.GetNames(typeof(EMaterial));
+        int numOfColours = ObjectPool.sharedInstance.GetColourCount();
 
-        Debug.Log("numOfMaterials = " + EMaterial.GetNames(typeof(EMaterial)).Length);
+        Debug.Log("numOfMaterials = " + numOfColours);
 
-        for(int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < numOfColours; i++)
         {
-            Debug.Log(materials[i] + " - " + i);
+            Debug.Log(ObjectPool.sharedInstance.GetColour(i).name + " - " + i);
         }
     }
-    private void ChangeMaterial(bool forward = true)
+    private void ChangeColour(bool next = true)
     {
-        int matLength = EMaterial.GetNames(typeof(EMaterial)).Length;
-        EMaterial oldColour = _colour;
+        int numOfColours= ObjectPool.sharedInstance.GetColourCount();
+        int prevColour;
 
-        if (forward)
+        // select next colour
+        if (next)
         {
             // if there's space increment
-            if ((int)_colour != matLength - 1)
+            if (_colourIndex != numOfColours - 1)
             {
-                _colour++;
-                Debug.Log("forward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+                prevColour = _colourIndex;
+                _colourIndex++;
+
+                //Debug.Log("next: " + ObjectPool.sharedInstance.GetColour(prevColour) + "(" + (prevColour) + ") -> " + ObjectPool.sharedInstance.GetColour(_colourIndex) + "(" + _colourIndex + ")");
             }
             // otherwise loop around
             else
             {
-                //Debug.Log("forward: out of range");
-                Debug.Log("forward: looping");
+                //Debug.Log("next: looping");
 
-                _colour = Enum.GetValues(typeof(EMaterial)).Cast<EMaterial>().Min();
-                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+                prevColour = _colourIndex;
+                _colourIndex = 0;
+
+                //Debug.Log("next: " + ObjectPool.sharedInstance.GetColour(prevColour) + "(" + (prevColour) + ") -> " + ObjectPool.sharedInstance.GetColour(_colourIndex) + "(" + _colourIndex + ")");
             }
         }
+        // select previous colour
         else
         {
             // if there's space decrement
-            if ((int)_colour != 0)
+            if (_colourIndex != 0)
             {
-                _colour--;
-                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+                prevColour = _colourIndex;
+                _colourIndex--;
+
+                //Debug.Log("next: " + ObjectPool.sharedInstance.GetColour(prevColour) + "(" + (prevColour) + ") -> " + ObjectPool.sharedInstance.GetColour(_colourIndex) + "(" + _colourIndex + ")");
             }
             // otherwise loop around
             else
             {
-                Debug.Log("backward: looping");
-             
-                _colour = Enum.GetValues(typeof(EMaterial)).Cast<EMaterial>().Max();
-                Debug.Log("backward: " + oldColour + "(" + ((int)oldColour) + ") -> " + _colour + "(" + ((int)_colour) + ")");
+                prevColour = _colourIndex;
+                _colourIndex = numOfColours - 1;
 
-                //Debug.Log("backward: out of range");
+                //Debug.Log("next: " + ObjectPool.sharedInstance.GetColour(prevColour) + "(" + (prevColour) + ") -> " + ObjectPool.sharedInstance.GetColour(_colourIndex) + "(" + _colourIndex + ")");
             }
         }
+
+        UpdateCarColour();
+    }
+
+    private void UpdateCarColour()
+    {
+        // get the current car
+        Transform carTF = ObjectPool.sharedInstance.GetCar(_carIndex).transform;
+        // get that car's body
+        Transform bodyTF = carTF.GetChild(0).GetChild(0);
+        // get that body's renderer
+        Renderer renderer = bodyTF.GetComponent<Renderer>();
+
+        //Debug.Log(bodyTF.name + " -> material component -> " + renderer.material);
+        //Debug.Log("materialList[0] -> " + ObjectPool.sharedInstance.GetColour(0));
+
+        // set the material to the desired colour
+        renderer.material = ObjectPool.sharedInstance.GetColour(_colourIndex);
     }
 }

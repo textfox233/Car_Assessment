@@ -279,6 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a33e727446e5f4db5fc2f6ba152474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _carIndex: 0
+  _colourIndex: 1
 --- !u!4 &385587843
 Transform:
   m_ObjectHideFlags: 0
@@ -328,7 +330,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarControllerGO: {fileID: 385587841}
-  pooledObjectList: []
+  carList: []
+  colourList:
+  - {fileID: 2100000, guid: 0b47a13f3c0c1a445a9e9c812c21f158, type: 2}
+  - {fileID: 2100000, guid: 3c68841f6eb0fa44f8b1ff7c7a3c2dc7, type: 2}
+  - {fileID: 2100000, guid: 44554e2bc2e0977448b38288fa841ece, type: 2}
+  - {fileID: 2100000, guid: 11aabdab977a0d04bb088ebf47d960c0, type: 2}
+  - {fileID: 2100000, guid: 708234556cba1d442b4d0f52fd47c706, type: 2}
+  - {fileID: 2100000, guid: 60286b9449eff6c4185f617cbdd1fa1b, type: 2}
+  - {fileID: 2100000, guid: 9389ae5fe40a6a847b7ba24f9dfe845b, type: 2}
+  - {fileID: 2100000, guid: 1cc0780d054f6654b99af356e539222b, type: 2}
+  - {fileID: 2100000, guid: 791be7b7aad8994439a305261abcbbda, type: 2}
+  - {fileID: 2100000, guid: d56f527263a1f8b4bab9bacd6743aed1, type: 2}
+  - {fileID: 2100000, guid: 17aa23083c1dba1428fae2dfaeec6168, type: 2}
+  - {fileID: 2100000, guid: a65ce55bc70285c44a3c2078b5776529, type: 2}
+  - {fileID: 2100000, guid: ca529b84253228a468d6d32d2e3620ef, type: 2}
 --- !u!4 &441956175
 Transform:
   m_ObjectHideFlags: 0
