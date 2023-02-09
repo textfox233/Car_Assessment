@@ -27,13 +27,13 @@ public class SelectionController : MonoBehaviour
         // Change Model
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Q key pressed");
+            //Debug.Log("Q key pressed");
 
             ChangeModel(false);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E key pressed");
+            //Debug.Log("E key pressed");
 
             ChangeModel();
         }
@@ -71,12 +71,12 @@ public class SelectionController : MonoBehaviour
             if (_carIndex < transform.childCount - 1)
             {
                 _carIndex++;
-                Debug.Log("Moving to " + _carIndex);
+                //Debug.Log("Moving to " + _carIndex);
             }
             // loop around if reaching the end
             else
             {
-                Debug.Log("Looping to 0");
+                //Debug.Log("Looping to 0");
                 _carIndex = 0;
             }
         }
@@ -86,12 +86,12 @@ public class SelectionController : MonoBehaviour
             if (_carIndex > 0)
             {
                 _carIndex--;
-                Debug.Log(_carIndex);
+                //Debug.Log(_carIndex);
             }
             // loop around if reaching the end
             else
             {
-                Debug.Log("Looping to " + (transform.childCount - 1));
+                //Debug.Log("Looping to " + (transform.childCount - 1));
                 _carIndex = transform.childCount - 1;
             }
         }

@@ -53,7 +53,7 @@ public class ObjectPool : MonoBehaviour
             }
 
             // null if there's no inactive objects in the pool
-            Debug.Log("no inactive objects in the pool");
+            Debug.Log("ObjectPool ERROR: no inactive objects in the pool");
             return null;
         }
         // last active object in the pool
@@ -68,7 +68,7 @@ public class ObjectPool : MonoBehaviour
             }
            
             // null if there's no active objects in the pool
-            Debug.Log("no active objects in the pool");
+            Debug.Log("ObjectPool ERROR: no active objects in the pool");
             return null;
         }
     }
@@ -77,7 +77,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (index >= _numCars || index < 0)
         {
-            Debug.Log(index + " is out of bounds");
+            Debug.Log("ObjectPool.GetCar() ERROR: " + index + " is out of bounds");
             return null;
         }
 
