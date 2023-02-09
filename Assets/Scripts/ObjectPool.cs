@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject CarControllerGO;
     [SerializeField] private List<GameObject> carList;
-    [SerializeField] private List<Material> colourList;
+    [SerializeField] private List<GameObject> colourList;
 
     public static ObjectPool sharedInstance;
 
@@ -25,11 +24,13 @@ public class ObjectPool : MonoBehaviour
         carList = new List<GameObject>();
         GameObject tmpGO;
 
+        GameObject carsGO = gameObject.GetComponent<GameController>().getCars();
+
         // get the car prefabs via parent
-        _numCars = CarControllerGO.transform.childCount;
+        _numCars = carsGO.transform.childCount;
         for (int i = 0; i < _numCars; i++)
         {
-            tmpGO = CarControllerGO.transform.GetChild(i).gameObject;   // get a game object
+            tmpGO = carsGO.transform.GetChild(i).gameObject;   // get a game object
             tmpGO.SetActive(false);                                     // set it to inactive
             carList.Add(tmpGO);                                         // add it to the list
         }
@@ -74,6 +75,7 @@ public class ObjectPool : MonoBehaviour
     }
 
     public GameObject GetCar(int index)
+    // return an object from the pool by index
     {
         if (index >= _numCars || index < 0)
         {
@@ -84,7 +86,7 @@ public class ObjectPool : MonoBehaviour
         return carList[index];
     }
 
-    public Material GetColour(int index)
+    public GameObject GetColour(int index)
     {
         if (index >= _numColours || index < 0)
         {

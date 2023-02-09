@@ -5,9 +5,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Jobs;
 
-public class SelectionController : MonoBehaviour
+public class CarController : MonoBehaviour
 {
+    [SerializeField] private GameObject GameControllerGO;
     [SerializeField] private int _carIndex, _colourIndex;
+    private int _cost;
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +43,13 @@ public class SelectionController : MonoBehaviour
         // Change Colour
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("A key pressed");
+            //Debug.Log("A key pressed");
 
             ChangeColour(false);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("D key pressed");
+            //Debug.Log("D key pressed");
 
             ChangeColour();
         }
@@ -184,7 +186,33 @@ public class SelectionController : MonoBehaviour
         //Debug.Log(bodyTF.name + " -> material component -> " + renderer.material);
         //Debug.Log("materialList[0] -> " + ObjectPool.sharedInstance.GetColour(0));
 
-        // set the material to the desired colour
-        renderer.material = ObjectPool.sharedInstance.GetColour(_colourIndex);
+        // get the colour object
+        GameObject colourGO = ObjectPool.sharedInstance.GetColour(_colourIndex);
+
+        // set the material
+        renderer.material = colourGO.GetComponent<Colour>().GetColour();
+
+        // update the cost to match
+        UpdateCost();
+    }
+
+    private void UpdateCost()
+    {
+        // get the current model's cost
+        GameObject carGO = ObjectPool.sharedInstance.GetCar(_carIndex);
+        int modelCost = carGO.GetComponent<Cost>().GetCost();
+
+        // get the current colour's cost
+        GameObject colourGO = ObjectPool.sharedInstance.GetColour(_colourIndex);
+        int colourCost = colourGO.GetComponent<Cost>().GetCost();
+
+        // calculate total
+        _cost = modelCost + colourCost;
+
+        // get the UI
+        GameObject UIGO = GameControllerGO.GetComponent<GameController>().getUI();
+
+        // update UI
+        UIGO.GetComponent<UIController>().UpdateCost(_cost);
     }
 }

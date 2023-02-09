@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarDetails : MonoBehaviour
+public class Colour : MonoBehaviour
 {
-    [SerializeField] private int _modelPrice;
+    [SerializeField] private Material _color;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +15,11 @@ public class CarDetails : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //colour.GetNames().Length;
+        
     }
 
-    int GetModelPrice()
+    public Material GetColour()
     {
-        return _modelPrice;
+        return _color;
     }
 }

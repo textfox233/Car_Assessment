@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5941496903570325968, guid: 98521c31d77a08840b22833d4434df80, type: 3}
+      propertyPath: m_Text
+      value: Colour
+      objectReference: {fileID: 0}
     - target: {fileID: 6406193909966862177, guid: 98521c31d77a08840b22833d4434df80, type: 3}
       propertyPath: m_Name
       value: Colour Button
@@ -410,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 385587843}
   - component: {fileID: 385587842}
+  - component: {fileID: 385587844}
   m_Layer: 0
   m_Name: Car Controller
   m_TagString: Untagged
@@ -450,6 +455,19 @@ Transform:
   m_Father: {fileID: 441956175}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
+--- !u!114 &385587844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385587841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab26ff888204fcd4a981f0a074c84c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 20
 --- !u!1 &441956173
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,28 +768,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -991508376, guid: ab97a43c050723e478b3c7a7754214b0, type: 3}
     - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 385587842}
-    - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelectionController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5570518089750955025, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+    - target: {fileID: 5941496903570325968, guid: 98521c31d77a08840b22833d4434df80, type: 3}
+      propertyPath: m_Text
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 6406193909966862177, guid: 98521c31d77a08840b22833d4434df80, type: 3}
       propertyPath: m_Name
@@ -862,33 +864,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 385587842}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelectionController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6593812081247924148, guid: 98521c31d77a08840b22833d4434df80, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98521c31d77a08840b22833d4434df80, type: 3}
 --- !u!224 &911812355 stripped
@@ -993,7 +971,7 @@ GameObject:
   - component: {fileID: 983717667}
   - component: {fileID: 983717666}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1056,7 +1034,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
