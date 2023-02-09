@@ -61,7 +61,7 @@ public class SelectionController : MonoBehaviour
     }
 
     // --- MODELS --- //
-    private void ChangeModel(bool next = true)
+    public void ChangeModel(bool next = true)
     {
         int prevIndex = _carIndex;
 
@@ -121,7 +121,7 @@ public class SelectionController : MonoBehaviour
             Debug.Log(ObjectPool.sharedInstance.GetColour(i).name + " - " + i);
         }
     }
-    private void ChangeColour(bool next = true)
+    public void ChangeColour(bool next = true)
     {
         int numOfColours= ObjectPool.sharedInstance.GetColourCount();
         int prevColour;
