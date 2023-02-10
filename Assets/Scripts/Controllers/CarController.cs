@@ -29,39 +29,39 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Change Model
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Debug.Log("Q key pressed");
+        //// Change Model
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    //Debug.Log("Q key pressed");
 
-            ChangeModel(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            //Debug.Log("E key pressed");
+        //    ChangeModel(false);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    //Debug.Log("E key pressed");
 
-            ChangeModel();
-        }
+        //    ChangeModel();
+        //}
 
-        // Change Colour
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            //Debug.Log("A key pressed");
+        //// Change Colour
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    //Debug.Log("A key pressed");
 
-            ChangeColour(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            //Debug.Log("D key pressed");
+        //    ChangeColour(false);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    //Debug.Log("D key pressed");
 
-            ChangeColour();
-        }
+        //    ChangeColour();
+        //}
 
-        // List Colours
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            LogColours();
-        }
+        //// List Colours
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    LogColours();
+        //}
 
     }
 
