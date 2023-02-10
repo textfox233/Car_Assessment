@@ -16,11 +16,14 @@ public class CarController : MonoBehaviour
     {
         Debug.Log("SelectionController.Start()");
 
-        // set starting car to active
-        ObjectPool.sharedInstance.GetCar(_carIndex).SetActive(true);
-
-        // paint on starting colour
+        // set up starting car 
+        GameObject carGO = ObjectPool.sharedInstance.GetCar(_carIndex);
+        // activate
+        carGO.SetActive(true);
+        // paint
         UpdateCarColour();
+        // fetch stats
+        UpdateCarStats(carGO.GetComponent<Model>());
     }
 
     // Update is called once per frame
@@ -104,6 +107,9 @@ public class CarController : MonoBehaviour
         // activate current car
         GameObject carGO = ObjectPool.sharedInstance.GetCar(_carIndex);
         carGO.SetActive(true);
+
+        // update stats
+        UpdateCarStats(carGO.GetComponent<Model>());
 
         // deactivate previous car
         carGO = ObjectPool.sharedInstance.GetCar(prevIndex);
@@ -193,10 +199,23 @@ public class CarController : MonoBehaviour
         renderer.material = paintjob.GetColour();
 
         // update the cost to match
-        UpdateCost();
+        UpdateCarCost();
+    }
+    private void UpdateCarStats(Model currentModel)
+    {
+        //Model currentModel = ObjectPool.sharedInstance.GetCar(_carIndex).GetComponent<Model>();
+
+        // pull out stats
+        float acceleration = currentModel.GetAcceleration();
+        float topSpeed = currentModel.GetTopSpeed();
+        float turnRate = currentModel.GetTurnRate();
+        int maxHP = currentModel.GetMaxHP();
+
+        GameObject UIGO = _gameControllerGO.GetComponent<GameController>().getUI();
+        UIGO.GetComponent<UIController>().UpdateStats(acceleration, topSpeed, turnRate, maxHP);
     }
 
-    private void UpdateCost()
+    private void UpdateCarCost()
     {
         // get the current model's cost
         Model model = ObjectPool.sharedInstance.GetCar(_carIndex).GetComponent<Model>();

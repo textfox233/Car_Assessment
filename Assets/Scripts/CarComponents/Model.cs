@@ -13,8 +13,8 @@ public class Model : CarComponentBase
     [SerializeField] int _maxHP;
 
     // --- GETTERS --- //
-    float GetAcceleration() { return _acceleration; }
-    float GetTopSpeed()     { return _topSpeed; }
-    float GetTurnRate()     { return _turnRate; }
-    int GetMaxHP()          { return _maxHP;}
+    public float GetAcceleration() { return _acceleration; }
+    public float GetTopSpeed()     { return _topSpeed; }
+    public float GetTurnRate()     { return _turnRate; }
+    public int GetMaxHP()          { return _maxHP;}
 }
