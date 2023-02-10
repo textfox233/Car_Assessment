@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8295163097687489226}
-  - component: {fileID: 9015533503352936611}
+  - component: {fileID: 8097035425094661238}
   m_Layer: 0
   m_Name: Hatchback
   m_TagString: Car Model
@@ -197,7 +197,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9015533503352936611
+--- !u!114 &8097035425094661238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,10 +206,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8726603433291071765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8564677ff4ce314db17e05493ed55a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 50356b301273b704c8c3e6e5b1dd9a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 10000
+  _cost: 7000
+  _acceleration: 45
+  _topSpeed: 80
+  _turnRate: 40
+  _maxHP: 120
 --- !u!1001 &2608204741500108082
 PrefabInstance:
   m_ObjectHideFlags: 0

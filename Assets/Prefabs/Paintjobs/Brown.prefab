@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2456360835879215965}
   - component: {fileID: 6706857749865224919}
   - component: {fileID: 4971117373252602902}
+  - component: {fileID: -5494661892639451340}
   m_Layer: 0
-  m_Name: Pink
+  m_Name: Brown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec5fca3eb3ba249a3440aec3d8f6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {fileID: 2100000, guid: 1cc0780d054f6654b99af356e539222b, type: 2}
+  _color: {fileID: 2100000, guid: 11aabdab977a0d04bb088ebf47d960c0, type: 2}
 --- !u!114 &4971117373252602902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,4 +59,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8564677ff4ce314db17e05493ed55a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 250
+  _cost: 80
+--- !u!114 &-5494661892639451340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438447639875597670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6953e7cf36f43de47aece6fd30aaf848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost: 80
+  _colour: {fileID: 2100000, guid: 11aabdab977a0d04bb088ebf47d960c0, type: 2}
