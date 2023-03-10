@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text costText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Text accelerationText;
+    public Text topSpeedText;
+    public Text turnRateText;
+    public Text healthText;
+
 
     public void UpdateCost(int newCost)
     // update the cost element

@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5961799668825916081}
-  - component: {fileID: -7074999623763194467}
+  - component: {fileID: 8998903721839201402}
   m_Layer: 0
   m_Name: Sedan
   m_TagString: Car Model
@@ -197,7 +197,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7074999623763194467
+--- !u!114 &8998903721839201402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,14 +206,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6393378929595038062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50356b301273b704c8c3e6e5b1dd9a9e, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c4c5d88fb7ae947b3e65a0fe47c200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 6000
-  _acceleration: 30
-  _topSpeed: 60
-  _turnRate: 20
-  _maxHP: 160
+  _gameControllerGO: {fileID: 0}
+  car: {fileID: 11400000, guid: b7eb6046c1c5cac4a8e9ca29730616db, type: 2}
+  _bodyModelGO: {fileID: 0}
 --- !u!1001 &3326891907868050546
 PrefabInstance:
   m_ObjectHideFlags: 0

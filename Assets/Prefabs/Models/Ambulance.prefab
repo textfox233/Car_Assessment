@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954299529274528555}
-  - component: {fileID: -864443040142727669}
+  - component: {fileID: 7316379401344574506}
   m_Layer: 0
   m_Name: Ambulance
   m_TagString: Car Model
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-864443040142727669
+--- !u!114 &7316379401344574506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 521031247987255540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50356b301273b704c8c3e6e5b1dd9a9e, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c4c5d88fb7ae947b3e65a0fe47c200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 20000
-  _acceleration: 10
-  _topSpeed: 60
-  _turnRate: 5
-  _maxHP: 400
+  _gameControllerGO: {fileID: 0}
+  car: {fileID: 11400000, guid: f25c4d740ebdcb04f99ad8f93db871de, type: 2}
+  _bodyModelGO: {fileID: 0}
 --- !u!1 &1045681877105942190
 GameObject:
   m_ObjectHideFlags: 0

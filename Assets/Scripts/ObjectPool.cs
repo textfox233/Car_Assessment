@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private List<GameObject> carList;
-    [SerializeField] private List<GameObject> colourList;
+    [SerializeField] private List<Paintjob> colourList;
 
     public static ObjectPool sharedInstance;
 
@@ -30,9 +30,9 @@ public class ObjectPool : MonoBehaviour
         _numCars = carsGO.transform.childCount;
         for (int i = 0; i < _numCars; i++)
         {
-            tmpGO = carsGO.transform.GetChild(i).gameObject;   // get a game object
-            tmpGO.SetActive(false);                                     // set it to inactive
-            carList.Add(tmpGO);                                         // add it to the list
+            tmpGO = carsGO.transform.GetChild(i).gameObject;    // get a game object
+            tmpGO.SetActive(false);                             // set it to inactive
+            carList.Add(tmpGO);                                 // add it to the list
         }
 
         // --- Colours --- //
@@ -86,7 +86,7 @@ public class ObjectPool : MonoBehaviour
         return carList[index];
     }
 
-    public GameObject GetColour(int index)
+    public Paintjob GetColour(int index)
     {
         if (index >= _numColours || index < 0)
         {

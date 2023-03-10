@@ -23,7 +23,7 @@ public class CarController : MonoBehaviour
         // paint
         UpdateCarColour();
         // fetch stats
-        UpdateCarStats(carGO.GetComponent<Model>());
+        UpdateCarStats(carGO.GetComponent<CarStats>());
     }
 
     // Update is called once per frame
@@ -109,7 +109,7 @@ public class CarController : MonoBehaviour
         carGO.SetActive(true);
 
         // update stats
-        UpdateCarStats(carGO.GetComponent<Model>());
+        UpdateCarStats(carGO.GetComponent<CarStats>());
 
         // deactivate previous car
         carGO = ObjectPool.sharedInstance.GetCar(prevIndex);
@@ -190,18 +190,18 @@ public class CarController : MonoBehaviour
         Renderer renderer = bodyTF.GetComponent<Renderer>();
 
         //Debug.Log(bodyTF.name + " -> material component -> " + renderer.material);
-        //Debug.Log("materialList[0] -> " + ObjectPool.sharedInstance.GetColour(0));
+        //Debug.Log("materialList[" + _colourIndex + "] -> " + ObjectPool.sharedInstance.GetColour(_colourIndex));
 
-        // get the paintjob
-        Paintjob paintjob = ObjectPool.sharedInstance.GetColour(_colourIndex).GetComponent<Paintjob>();
+        // get the right paintjob
+        GetComponent<PaintDetails>().paintjob = (ObjectPool.sharedInstance.GetColour(_colourIndex));
 
         // set the material
-        renderer.material = paintjob.GetColour();
+        renderer.material = GetComponent<PaintDetails>().GetColour();
 
         // update the cost to match
         UpdateCarCost();
     }
-    private void UpdateCarStats(Model currentModel)
+    private void UpdateCarStats(CarStats currentModel)
     {
         //Model currentModel = ObjectPool.sharedInstance.GetCar(_carIndex).GetComponent<Model>();
 
@@ -218,20 +218,19 @@ public class CarController : MonoBehaviour
     private void UpdateCarCost()
     {
         // get the current model's cost
-        Model model = ObjectPool.sharedInstance.GetCar(_carIndex).GetComponent<Model>();
-        int modelCost = model.GetCost();
+        CarStats car = ObjectPool.sharedInstance.GetCar(_carIndex).GetComponent<CarStats>();
+        int carCost = car.GetCost();
 
         // get the current paintjob's cost
-        Paintjob paintjob = ObjectPool.sharedInstance.GetColour(_colourIndex).GetComponent<Paintjob>();
-        int paintCost = paintjob.GetCost();
+        int paintCost = GetComponent<PaintDetails>().GetCost();
 
         // calculate total
-        _cost = modelCost + paintCost;
+        _cost = carCost + paintCost;
 
-        // get the UI
-        GameObject UIGO = _gameControllerGO.GetComponent<GameController>().getUI();
+        // get the UI Controller
+        UIController UI = _gameControllerGO.GetComponent<GameController>().getUI().GetComponent<UIController>();
 
         // update UI
-        UIGO.GetComponent<UIController>().UpdateCost(_cost);
+        UI.UpdateCost(_cost);
     }
 }
