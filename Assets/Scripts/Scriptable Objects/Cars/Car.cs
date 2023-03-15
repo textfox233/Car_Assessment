@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Car", menuName = "Car")]
-public class Car : ScriptableObject
+public class Car : CarComponent
 {
-    public new string name;
-    
-    // cost
-    public int cost;
-
     // stats
-    public float acceleration;
-    public float topSpeed;
-    public float turnRate;
-    public int maxHP;
+    [SerializeField] float acceleration;
+    [SerializeField] float topSpeed;
+    [SerializeField] float turnRate;
+    [SerializeField] int maxHP;
 
+
+    public float GetAcceleration() { return acceleration; }
+    public float GetTopSpeed()     { return topSpeed; }
+    public float GetTurnRate()     { return turnRate; }
+    public int GetMaxHP()          { return maxHP; }
     public void Print ()
     {
-        Debug.Log("The " + name + " costs " + cost.ToString());
+        Debug.Log("The " + name + " costs " + GetCost().ToString());
     }
 }

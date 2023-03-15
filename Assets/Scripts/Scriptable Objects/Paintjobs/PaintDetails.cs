@@ -8,6 +8,6 @@ public class PaintDetails : MonoBehaviour
     public Paintjob paintjob;
 
     // Getters
-    public int GetCost() { return paintjob.cost; }
-    public Material GetColour() { return paintjob.colour; }
+    public int GetCost() { return paintjob.GetCost(); }
+    public Material GetColour() { return paintjob.GetColour(); }
 }

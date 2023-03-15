@@ -8,9 +8,9 @@ public class CarStats : MonoBehaviour
     [SerializeField] private Car car;
 
     // getters
-    public int GetCost()            { return car.cost; }
-    public float GetAcceleration()  { return car.acceleration; }
-    public float GetTopSpeed()      { return car.topSpeed; }
-    public float GetTurnRate()      { return car.turnRate; }
-    public int GetMaxHP()           { return car.maxHP; }
+    public int GetCost()            { return car.GetCost(); }
+    public float GetAcceleration()  { return car.GetAcceleration(); }
+    public float GetTopSpeed()      { return car.GetTopSpeed(); }
+    public float GetTurnRate()      { return car.GetTurnRate(); }
+    public int GetMaxHP()           { return car.GetMaxHP(); }
 }

@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Paintjob", menuName = "Paintjob")]
-public class Paintjob : ScriptableObject
+public class Paintjob : CarComponent
 {
-    public new string name;
-
-    // cost
-    public int cost;
-    
     // material / colour
-    public Material colour;
+    [SerializeField] Material colour;
+
+    public Material GetColour() { return colour; }
 }
